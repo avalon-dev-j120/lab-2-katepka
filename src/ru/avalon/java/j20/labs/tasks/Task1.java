@@ -60,13 +60,14 @@ public class Task1 implements Task {
      */
     private String read(File file) throws IOException {
         try (InputStream in = new FileInputStream(file);
-             ByteArrayOutputStream data = new ByteArrayOutputStream()) {
+            ByteArrayOutputStream data = new ByteArrayOutputStream()) {
             byte[] buffer = new byte[1024];
             int length;
             while ((length = in.read(buffer)) != -1) {
                 data.write(buffer, 0, length);
             }
-            return data.toString();
+            byte[] bytes = data.toByteArray();
+            return new String(bytes);
         }
     }
 
