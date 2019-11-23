@@ -30,7 +30,7 @@ public class Task6 implements Task {
         for (Country country : countries) {
             System.out.println("Code: " + country.getCode() + " | Country: " + country.getName());
         }
-        
+      
         /*
          * TODO(Студент): Выполнить задание №6
          *
