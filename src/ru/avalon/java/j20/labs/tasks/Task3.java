@@ -60,12 +60,12 @@ public class Task3 implements Task {
         try (Reader in = new FileReader(file)) {
             BufferedReader br = new BufferedReader(in);
             Collection<String> lines = new ArrayList<>();
-            while (br.read() != -1) {
-                lines.add(br.readLine() + "\n");
+            while (br.readLine() != null) {
+                lines.add(br.readLine() + "\r\n");
             }
             // финт с обрезанием последнего переноса строки
             String lastLine = ((ArrayList<String>) lines).get(lines.size() - 1);
-            String newLastLine = lastLine.replace("\n", "");
+            String newLastLine = lastLine.replace("\r\n", "");
             lines.remove(lastLine);
             lines.add(newLastLine);
             return lines;
@@ -88,7 +88,7 @@ public class Task3 implements Task {
             for (String line : collection) {
                 writer.write(line);
             }
-            
+   
         }
     }
 }

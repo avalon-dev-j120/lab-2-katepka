@@ -61,6 +61,6 @@ public class Country {
         /*
          * TODO(Студент): Реализовать метод valueOf класса Country
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        return new Country(text.split(":")[0], text.split(":")[1]);
     }
 }
