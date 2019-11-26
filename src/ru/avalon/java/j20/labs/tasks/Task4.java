@@ -1,10 +1,10 @@
 package ru.avalon.java.j20.labs.tasks;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import ru.avalon.java.j20.labs.Task;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -19,7 +19,7 @@ public class Task4 implements Task {
      */
     @Override
     public void run() throws IOException {
-        Properties properties = read("src\\resources\\database.properties");
+        Properties properties = read("resources/database.properties");
         System.out.println(properties.getProperty("custom.property"));
 
         /*
@@ -40,7 +40,7 @@ public class Task4 implements Task {
      */
     private Properties read(String path) throws FileNotFoundException, IOException {
         Properties properties = new Properties();
-        try (FileInputStream in = new FileInputStream(path)) {
+        try (InputStream in = ClassLoader.getSystemResourceAsStream(path)) {
             properties.load(in);
             return properties;
         }
