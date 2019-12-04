@@ -60,7 +60,16 @@ public class Country {
     public static Country valueOf(String text) throws ParseException {
         /*
          * TODO(Студент): Реализовать метод valueOf класса Country
+         * TODO: Пофиксить баг с пропадающей 249 строкой в countries.txt ???
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        String ek[] = text.split("[:=]");
+        if (ek.length > 1) {
+            return new Country(ek[0], ek[1]);
+        }
+        int fspace = text.indexOf(" ");
+        if (fspace != -1) {
+            return new Country(text.substring(0, fspace), text.substring(fspace + 1));
+        }
+        throw new ParseException("Unrecognized country", 1);
     }
 }

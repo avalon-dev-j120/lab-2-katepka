@@ -4,6 +4,7 @@ import ru.avalon.java.j20.labs.Task;
 
 import java.io.IOException;
 import java.util.Locale;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
@@ -18,6 +19,22 @@ public class Task5 implements Task {
      */
     @Override
     public void run() throws IOException {
+        Locale defLocale = new Locale("en");
+        Locale.setDefault(defLocale); // устанавливаем локализацию по умолчанию
+        ResourceBundle rb = read("resources.strings.titles"); // получаем ресурс с локализацией по умолчанию
+        String menuEdit = rb.getString("menu.edit"); // получаем свойство ресурса в виде строки
+        System.out.println("Пункт меню в локализации по умолчанию: " + menuEdit); 
+        System.out.println("name = " + rb.getBaseBundleName()); // получаем имя считанного ресурса
+        Locale locale = new Locale("fr"); // создаем локализацию
+        ResourceBundle rbf = read("resources.strings.titles", locale); // получаем ресурс с указанием локализации
+        String menuEditF = rbf.getString("menu.edit"); // Получаем свойство ресурса в виде строки
+        System.out.println("Пункт меню в выбранной локализации: " + menuEditF);
+        
+        // Получить системные переменные окружения:
+//        Map<String, String> env = System.getenv();
+//        for (Map.Entry<String, String> me : env.entrySet()) {
+//            System.out.println(me.getKey() + " = " + me.getValue());
+//        }
         /*
          * TODO(Студент): Выполнить задание №5
          *
@@ -41,7 +58,7 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path) {
-        throw new UnsupportedOperationException("Not implement yet!");
+        return ResourceBundle.getBundle(path);
     }
 
     /**
@@ -51,6 +68,6 @@ public class Task5 implements Task {
      * @return новый экземпляр типа {@link ResourceBundle}
      */
     private ResourceBundle read(String path, Locale locale) {
-        throw new UnsupportedOperationException("Not implement yet!");
+        return ResourceBundle.getBundle(path, locale);
     }
 }
